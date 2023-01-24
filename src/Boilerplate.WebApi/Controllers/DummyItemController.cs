@@ -10,14 +10,8 @@ namespace Boilerplate.WebApi.Controllers;
 public class DummyItemController : VersionedApiController
 {
   [HttpGet]
-  public async Task<ActionResult<IList<DummyItem>>> GetAllAsync()
-  {
-    return await Mediator.Send(new GetAllDummyItemsQuery());
-  }
+  public async Task<ActionResult<IList<DummyItem>>> GetAllAsync() => await Mediator.Send(new GetAllDummyItemsQuery());
 
   [HttpPost]
-  public async Task<ActionResult<Guid>> CreateAsync(CreateDummyItemCommand request)
-  {
-    return await Mediator.Send(request);
-  }
+  public async Task<ActionResult<Guid>> CreateAsync(CreateDummyItemCommand request) => await Mediator.Send(request);
 }

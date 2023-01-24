@@ -7,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager config = builder.Configuration;
 
 builder.Services.AddControllers();
-builder.Services.AddApiVersioning();
+builder.Services.AddApiVersioning(config =>
+{
+  config.AssumeDefaultVersionWhenUnspecified = true;
+  config.ReportApiVersions = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,7 +1,11 @@
-﻿using Boilerplate.Infrastructure.Persistence;
+﻿using Boilerplate.Application.Core.Events;
+using Boilerplate.Infrastructure.Events;
+using Boilerplate.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Boilerplate.Infrastructure;
 
@@ -15,6 +19,10 @@ public static class DependencyInjection
     {
       options.UseNpgsql(connectionString);
     });
+
+    services.AddMediatR(Assembly.GetExecutingAssembly());
+
+    services.AddScoped<IEventPublisher, MediatorEventPublisher>();
 
     services.AddRepositories();
 

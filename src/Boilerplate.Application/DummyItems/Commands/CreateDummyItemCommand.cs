@@ -18,9 +18,9 @@ internal class CreateDummyItemCommandValidator : AbstractValidator<CreateDummyIt
 
 internal class CreateDummyItemCommandHandler : IRequestHandler<CreateDummyItemCommand, Guid>
 {
-  public readonly IRepository<DummyItem> _repository;
+  public readonly IRepositoryWithEvents<DummyItem> _repository;
 
-  public CreateDummyItemCommandHandler(IRepository<DummyItem> repository)
+  public CreateDummyItemCommandHandler(IRepositoryWithEvents<DummyItem> repository)
   {
     _repository = repository;
   }

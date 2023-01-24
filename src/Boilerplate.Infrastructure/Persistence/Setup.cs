@@ -13,6 +13,7 @@ internal static class Setup
                 .ToList();
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+    services.AddScoped(typeof(IRepositoryWithEvents<>), typeof(EfRepositoryWithEvents<>));
 
     foreach (var type in aggregateRootTypes)
     {

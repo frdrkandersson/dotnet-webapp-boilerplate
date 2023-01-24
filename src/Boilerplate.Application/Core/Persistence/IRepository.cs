@@ -24,3 +24,14 @@ public interface IRepository<T, TId> : IRepositoryBase<T>
   where TId : notnull
 {
 }
+
+public interface IRepositoryWithEvents<T> : IRepositoryWithEvents<T, Guid>
+  where T : class, IAggregateRoot<Guid>
+{
+}
+
+public interface IRepositoryWithEvents<T, TId> : IRepositoryBase<T>
+  where T : class, IAggregateRoot<TId>
+  where TId : notnull
+{
+}
