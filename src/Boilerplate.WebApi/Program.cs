@@ -1,5 +1,6 @@
 using Boilerplate.Application;
 using Boilerplate.Infrastructure;
+using Boilerplate.Infrastructure.Notifications;
 using Boilerplate.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+app.MapHub<NotificationHub>("/notifications", options =>
+{
+  options.CloseOnAuthenticationExpiration = true;
+});
 
 using IServiceScope serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 using ApplicationDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

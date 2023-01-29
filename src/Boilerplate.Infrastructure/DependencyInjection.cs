@@ -26,6 +26,8 @@ public static class DependencyInjection
 
     services.AddRepositories();
 
+    services.AddSignalR();
+
     return services;
   }
 }
