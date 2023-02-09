@@ -16,7 +16,7 @@ internal class MediatorEventPublisher : IEventPublisher
 
   public Task PublishAsync(IEvent @event) => _mediator.Publish(CreateEventNotification(@event));
 
-  private INotification CreateEventNotification(IEvent @event) =>
+  private static INotification CreateEventNotification(IEvent @event) =>
     (INotification)Activator.CreateInstance(
-        typeof(EventNotification<>).MakeGenericType(@event.GetType()), @event)!;
+        typeof(DomainEventWrapper<>).MakeGenericType(@event.GetType()), @event)!;
 }

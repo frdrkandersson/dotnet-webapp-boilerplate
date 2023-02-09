@@ -2,5 +2,5 @@
 
 public interface INotificationPublisher
 {
-  Task SendToAllAsync(INotification notification, CancellationToken cancellationToken);
+  Task SendToAllAsync(Domain.Abstractions.IEvent notification, CancellationToken cancellationToken = default);
 }

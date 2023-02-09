@@ -5,21 +5,22 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7E6173CF-7C46-49A6-9EC1-EE8C8CB48B9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Application", "src\Boilerplate.Application\Boilerplate.Application.csproj", "{7DEBD54A-4D7B-4DDD-AB68-595D69B7CCFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boilerplate.Application", "src\Boilerplate.Application\Boilerplate.Application.csproj", "{7DEBD54A-4D7B-4DDD-AB68-595D69B7CCFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Domain", "src\Boilerplate.Domain\Boilerplate.Domain.csproj", "{67AA66D4-07B1-4F0C-8166-459E4F8FD4C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boilerplate.Domain", "src\Boilerplate.Domain\Boilerplate.Domain.csproj", "{67AA66D4-07B1-4F0C-8166-459E4F8FD4C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Infrastructure", "src\Boilerplate.Infrastructure\Boilerplate.Infrastructure.csproj", "{5DA10BEB-E501-4D85-B0E0-99AC837A1925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boilerplate.Infrastructure", "src\Boilerplate.Infrastructure\Boilerplate.Infrastructure.csproj", "{5DA10BEB-E501-4D85-B0E0-99AC837A1925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.WebApi", "src\Boilerplate.WebApi\Boilerplate.WebApi.csproj", "{B49AB30E-A637-485E-912D-C1D72174BBB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boilerplate.WebApi", "src\Boilerplate.WebApi\Boilerplate.WebApi.csproj", "{B49AB30E-A637-485E-912D-C1D72174BBB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boilerplate.SignalR.Client", "clients\Boilerplate.SignalR.Client\Boilerplate.SignalR.Client.csproj", "{A155A1A5-E211-4F5E-968D-9CF8F23358AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{0A5E42FA-6371-4BCD-853C-EAE8BDA22D73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7DEBD54A-4D7B-4DDD-AB68-595D69B7CCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,11 +39,22 @@ Global
 		{B49AB30E-A637-485E-912D-C1D72174BBB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B49AB30E-A637-485E-912D-C1D72174BBB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B49AB30E-A637-485E-912D-C1D72174BBB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A155A1A5-E211-4F5E-968D-9CF8F23358AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A155A1A5-E211-4F5E-968D-9CF8F23358AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A155A1A5-E211-4F5E-968D-9CF8F23358AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A155A1A5-E211-4F5E-968D-9CF8F23358AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7DEBD54A-4D7B-4DDD-AB68-595D69B7CCFC} = {7E6173CF-7C46-49A6-9EC1-EE8C8CB48B9B}
 		{67AA66D4-07B1-4F0C-8166-459E4F8FD4C3} = {7E6173CF-7C46-49A6-9EC1-EE8C8CB48B9B}
 		{5DA10BEB-E501-4D85-B0E0-99AC837A1925} = {7E6173CF-7C46-49A6-9EC1-EE8C8CB48B9B}
 		{B49AB30E-A637-485E-912D-C1D72174BBB3} = {7E6173CF-7C46-49A6-9EC1-EE8C8CB48B9B}
+		{A155A1A5-E211-4F5E-968D-9CF8F23358AA} = {0A5E42FA-6371-4BCD-853C-EAE8BDA22D73}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {706A7DFE-96A0-4576-88DF-24F0B1D5DF06}
 	EndGlobalSection
 EndGlobal

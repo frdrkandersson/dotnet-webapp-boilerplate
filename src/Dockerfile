@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+ARG ENV
 
 COPY Boilerplate.WebApi/*.csproj Boilerplate.WebApi/
 COPY Boilerplate.Application/*.csproj Boilerplate.Application/
@@ -16,6 +17,7 @@ RUN dotnet build -c Release --no-restore
 
 FROM build AS publish
 RUN dotnet publish -c Release --no-build -o /app
+RUN if ["$ENV" = "Development" ] ; then dotnet dev-certs https ; fi
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-alpine
 WORKDIR /app

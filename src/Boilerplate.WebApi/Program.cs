@@ -28,14 +28,11 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+app.MapHub<NotificationHub>("/notifications");
 
-app.MapHub<NotificationHub>("/notifications", options =>
-{
-  options.CloseOnAuthenticationExpiration = true;
-});
+app.UseHttpsRedirection();
+//app.UseAuthorization();
+app.MapControllers();
 
 using IServiceScope serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 using ApplicationDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

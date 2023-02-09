@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Boilerplate.Application.DummyItems.EventHandlers;
 
-internal class DummyItemCreatedEvent : EventNotificationHandler<EntityCreatedEvent<DummyItem>>
+internal class DummyItemCreatedEvent : DomainEventHandler<EntityCreatedEvent<DummyItem>>
 {
   private readonly ILogger<DummyItemCreatedEvent> _logger;
 

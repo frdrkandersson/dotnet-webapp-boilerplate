@@ -1,5 +1,7 @@
 ﻿using Boilerplate.Application.Core.Events;
+using Boilerplate.Application.Core.Notifications;
 using Boilerplate.Infrastructure.Events;
+using Boilerplate.Infrastructure.Notifications;
 using Boilerplate.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ public static class DependencyInjection
     services.AddMediatR(Assembly.GetExecutingAssembly());
 
     services.AddScoped<IEventPublisher, MediatorEventPublisher>();
+    services.AddScoped<INotificationPublisher, SignalRNotificationPublisher>();
 
     services.AddRepositories();
 
