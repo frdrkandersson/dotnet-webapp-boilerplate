@@ -8,11 +8,7 @@ internal class MediatorEventPublisher : IEventPublisher
 {
   private readonly IPublisher _mediator;
 
-  public MediatorEventPublisher(IPublisher mediator)
-  {
-
-    _mediator = mediator;
-  }
+  public MediatorEventPublisher(IPublisher mediator) => _mediator = mediator;
 
   public Task PublishAsync(IEvent @event) => _mediator.Publish(CreateEventNotification(@event));
 

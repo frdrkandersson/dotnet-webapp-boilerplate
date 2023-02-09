@@ -1,11 +1,10 @@
 ﻿namespace Boilerplate.Application.Core.Exceptions;
 
-public class ValidationException : Exception
+public sealed class ValidationException : ApplicationException
 {
-  public ValidationException(Dictionary<string, string[]> errors)
-  {
-    Errors = errors;
-  }
+  public ValidationException(IReadOnlyDictionary<string, string[]> errors)
+      : base("Validation Failure", "One or more validation errors occurred")
+      => Errors = errors;
 
   public IReadOnlyDictionary<string, string[]> Errors { get; }
 }

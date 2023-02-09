@@ -4,15 +4,13 @@ namespace Boilerplate.Domain.Abstractions;
 
 public abstract class Entity : Entity<Guid>
 {
-  protected Entity() : base(Guid.NewGuid())
-  {
-  }
+  protected Entity() : base(Guid.NewGuid()) { }
 }
 
 public abstract class Entity<TId> : IEntity<TId>
     where TId : notnull
 {
-  protected Entity(TId id) { Id = id; }
+  protected Entity(TId id) => Id = id;
 
   public TId Id { get; protected set; }
 

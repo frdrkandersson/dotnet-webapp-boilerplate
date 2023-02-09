@@ -4,9 +4,9 @@ using MediatR;
 
 namespace Boilerplate.Application.DummyItems.Queries;
 
-public record GetAllDummyItemsQuery : IRequest<List<DummyItem>>;
+public record GetAllDummyItemsQuery : IRequest<List<DummyItemDto>>;
 
-internal class GetAllDummyItemsQueryHandler : IRequestHandler<GetAllDummyItemsQuery, List<DummyItem>>
+internal class GetAllDummyItemsQueryHandler : IRequestHandler<GetAllDummyItemsQuery, List<DummyItemDto>>
 {
   public readonly IRepository<DummyItem> _repository;
 
@@ -15,6 +15,9 @@ internal class GetAllDummyItemsQueryHandler : IRequestHandler<GetAllDummyItemsQu
     _repository = repository;
   }
 
-  public Task<List<DummyItem>> Handle(GetAllDummyItemsQuery request, CancellationToken cancellationToken)
-    => _repository.ListAsync(cancellationToken);
+  public async Task<List<DummyItemDto>> Handle(GetAllDummyItemsQuery request, CancellationToken cancellationToken)
+  {
+    var items = await _repository.ListAsync(cancellationToken);
+    return items.Select(x => new DummyItemDto(x.Id, x.IntProp, x.StringProp)).ToList();
+  }
 }

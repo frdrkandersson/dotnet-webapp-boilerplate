@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Boilerplate.Application.DummyItems.Commands;
 
-public record CreateDummyItemCommand(int IntProp, string StringProp) : IRequest<Guid>;
+public record CreateDummyItemCommand(int IntProp, string StringProp) : IRequest<DummyItemDto>;
 
 internal class CreateDummyItemCommandValidator : AbstractValidator<CreateDummyItemCommand>
 {
@@ -16,7 +16,7 @@ internal class CreateDummyItemCommandValidator : AbstractValidator<CreateDummyIt
   }
 }
 
-internal class CreateDummyItemCommandHandler : IRequestHandler<CreateDummyItemCommand, Guid>
+internal class CreateDummyItemCommandHandler : IRequestHandler<CreateDummyItemCommand, DummyItemDto>
 {
   public readonly IRepositoryWithEvents<DummyItem> _repository;
 
@@ -25,7 +25,7 @@ internal class CreateDummyItemCommandHandler : IRequestHandler<CreateDummyItemCo
     _repository = repository;
   }
 
-  public async Task<Guid> Handle(CreateDummyItemCommand request, CancellationToken cancellationToken)
+  public async Task<DummyItemDto> Handle(CreateDummyItemCommand request, CancellationToken cancellationToken)
   {
     var item = new DummyItem()
     {
@@ -33,8 +33,8 @@ internal class CreateDummyItemCommandHandler : IRequestHandler<CreateDummyItemCo
       StringProp = request.StringProp
     };
 
-    await _repository.AddAsync(item, cancellationToken);
+    var newItem = await _repository.AddAsync(item, cancellationToken);
 
-    return item.Id;
+    return new DummyItemDto(newItem.Id, newItem.IntProp, newItem.StringProp);
   }
 }

@@ -5,10 +5,7 @@ using Boilerplate.Domain.Abstractions;
 namespace Boilerplate.Infrastructure.Persistence;
 
 public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>
-    where T : class, IAggregateRoot
+  where T : class, IAggregateRoot
 {
-  public EfRepository(ApplicationDbContext dbContext)
-      : base(dbContext)
-  {
-  }
+  public EfRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 }

@@ -21,9 +21,7 @@ public abstract class BaseDbContext : DbContext
   {
     await SendDomainEventsAsync();
 
-    int result = await base.SaveChangesAsync(cancellationToken);
-
-    return result;
+    return await base.SaveChangesAsync(cancellationToken);
   }
 
   private async Task SendDomainEventsAsync()

@@ -9,12 +9,8 @@ internal class SignalRNotificationPublisher : INotificationPublisher
   private readonly IHubContext<NotificationHub> _notificationHub;
   //private readonly ITenantInfo _currentTenant;
 
-  // TODO: Add tenant
-
   public SignalRNotificationPublisher(IHubContext<NotificationHub> notificationHub)
-  {
-    _notificationHub = notificationHub;
-  }
+    => _notificationHub = notificationHub;
 
   public Task SendToAllAsync(IEvent domainEvent, CancellationToken cancellationToken = default)
     => _notificationHub.Clients.All.SendAsync("DomainEvent", domainEvent.GetType().FullName, domainEvent, cancellationToken);

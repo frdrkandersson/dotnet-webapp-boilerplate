@@ -8,10 +8,7 @@ namespace Boilerplate.Infrastructure.Persistence;
 public class EfRepositoryWithEvents<T> : RepositoryBase<T>, IRepositoryWithEvents<T>
     where T : class, IAggregateRoot
 {
-  public EfRepositoryWithEvents(ApplicationDbContext dbContext)
-      : base(dbContext)
-  {
-  }
+  public EfRepositoryWithEvents(ApplicationDbContext dbContext) : base(dbContext) { }
 
   public override Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
   {

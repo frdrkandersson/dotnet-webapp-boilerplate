@@ -13,9 +13,4 @@ public sealed class ApplicationDbContext : BaseDbContext
   }
 
   public DbSet<DummyItem> Items => Set<DummyItem>();
-
-  protected override void OnModelCreating(ModelBuilder modelBuilder)
-  {
-    base.OnModelCreating(modelBuilder);
-  }
 }

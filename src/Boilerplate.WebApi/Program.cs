@@ -2,6 +2,7 @@ using Boilerplate.Application;
 using Boilerplate.Infrastructure;
 using Boilerplate.Infrastructure.Notifications;
 using Boilerplate.Infrastructure.Persistence;
+using Boilerplate.WebApi.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,11 +29,11 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-app.MapHub<NotificationHub>("/notifications");
-
 app.UseHttpsRedirection();
-//app.UseAuthorization();
+app.UseAuthorization();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
+app.MapHub<NotificationHub>("/notifications");
 
 using IServiceScope serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 using ApplicationDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

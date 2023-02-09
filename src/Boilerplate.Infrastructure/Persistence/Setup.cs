@@ -17,8 +17,8 @@ internal static class Setup
 
     foreach (var type in aggregateRootTypes)
     {
-      services.AddScoped(typeof(IReadRepository<>).MakeGenericType(type), sp =>
-        sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(type)));
+      services.AddScoped(typeof(IReadRepository<>).MakeGenericType(type),
+        sp => sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(type)));
     }
 
     return services;
