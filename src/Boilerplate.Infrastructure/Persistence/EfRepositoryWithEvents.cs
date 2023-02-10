@@ -2,6 +2,7 @@
 using Boilerplate.Application.Core.Persistence;
 using Boilerplate.Domain.Abstractions;
 using Boilerplate.Domain.Events;
+using Boilerplate.Infrastructure.Persistence.Context;
 
 namespace Boilerplate.Infrastructure.Persistence;
 

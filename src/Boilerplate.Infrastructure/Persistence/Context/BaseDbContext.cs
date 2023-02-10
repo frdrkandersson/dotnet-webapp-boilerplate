@@ -3,7 +3,7 @@ using Boilerplate.Application.Core.Notifications;
 using Boilerplate.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Boilerplate.Infrastructure.Persistence;
+namespace Boilerplate.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext : DbContext
 {

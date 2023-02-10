@@ -1,9 +1,7 @@
 using Boilerplate.Application;
 using Boilerplate.Infrastructure;
 using Boilerplate.Infrastructure.Notifications;
-using Boilerplate.Infrastructure.Persistence;
 using Boilerplate.WebApi.Middleware;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager config = builder.Configuration;
@@ -35,8 +33,6 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
 app.MapHub<NotificationHub>("/notifications");
 
-using IServiceScope serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-using ApplicationDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-dbContext.Database.Migrate();
+app.RunMigrations();
 
 app.Run();
