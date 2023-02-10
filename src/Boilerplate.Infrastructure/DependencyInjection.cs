@@ -2,6 +2,7 @@
 using Boilerplate.Application.Core.Notifications;
 using Boilerplate.Infrastructure.Events;
 using Boilerplate.Infrastructure.Identity;
+using Boilerplate.Infrastructure.MultiTenancy;
 using Boilerplate.Infrastructure.Notifications;
 using Boilerplate.Infrastructure.Persistence;
 using Boilerplate.Infrastructure.Persistence.Context;
@@ -18,12 +19,17 @@ public static class DependencyInjection
 {
   public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
   {
-    services.AddIdentityServer(config);
-    services.AddPersistence(config);
+    services
+      .AddIdentityServer(config)
+      .AddMultitenancy(config)
+      .AddPersistence(config);
+
     services.AddMediatR(Assembly.GetExecutingAssembly());
     services.AddSignalR();
+
     services.AddScoped<IEventPublisher, MediatorEventPublisher>();
     services.AddScoped<INotificationPublisher, SignalRNotificationPublisher>();
+
     return services;
   }
 
@@ -35,5 +41,8 @@ public static class DependencyInjection
 
     using var identityDb = serviceScope.ServiceProvider.GetRequiredService<Boilerplate.Infrastructure.Identity.IdentityDbContext>();
     identityDb.Database.Migrate();
+
+    using var tenantDb = serviceScope.ServiceProvider.GetRequiredService<Boilerplate.Infrastructure.MultiTenancy.TenantDbContext>();
+    tenantDb.Database.Migrate();
   }
 }
