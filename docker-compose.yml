@@ -12,8 +12,9 @@ services:
       - "ConnectionStrings:BoilerplateDb=Host=postgres;Port=5432;Username=postgres;Password=password;Database=Boilerplate"
     ports:
       - '8000:80'
-    depends_on:      
-      - postgres     
+    depends_on:            
+      postgres:
+        condition: service_healthy       
       
   signalr-client:
     build:
@@ -33,7 +34,12 @@ services:
     volumes:
       - postgres-volume:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5432:5432"      
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 1s
+      retries: 3
 
 volumes:
   postgres-volume:  
