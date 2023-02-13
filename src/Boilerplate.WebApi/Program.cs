@@ -1,10 +1,13 @@
 using Boilerplate.Application;
 using Boilerplate.Infrastructure;
+using Boilerplate.Infrastructure.Logging;
 using Boilerplate.Infrastructure.Notifications;
 using Boilerplate.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager config = builder.Configuration;
+
+builder.AddSerilogLogging();
 
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning(config =>
